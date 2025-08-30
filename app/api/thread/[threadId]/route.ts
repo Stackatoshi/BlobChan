@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const mockThread = {
   id: 'thread1',
   username: 'Anonymous',
-  content: 'Welcome to SolChan! This is a 4chan-style imageboard built on Solana with USDC subscriptions. Connect your wallet to start posting!',
+          content: 'Welcome to BlobChan! This is a 4chan-style imageboard built on Solana with USDC subscriptions. Connect your wallet to start posting!',
   imageUrl: null,
   linkUrl: null,
   linkTitle: null,

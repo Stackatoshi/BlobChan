@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     // Fetch the page
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; SolChan/1.0)',
+        'User-Agent': 'Mozilla/5.0 (compatible; BlobChan/1.0)',
       },
     })
     

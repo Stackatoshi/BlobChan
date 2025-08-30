@@ -4,7 +4,7 @@ const mockThreads = [
   {
     id: 'thread1',
     opUsername: 'Anonymous',
-    content: 'Welcome to SolChan! This is a 4chan-style imageboard built on Solana with USDC subscriptions.',
+            content: 'Welcome to BlobChan! This is a 4chan-style imageboard built on Solana with USDC subscriptions.',
     imageUrl: null,
     linkUrl: null,
     linkTitle: null,

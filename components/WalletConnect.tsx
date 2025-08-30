@@ -37,7 +37,7 @@ export function WalletConnect() {
       const { nonce } = await nonceRes.json()
       
       // Create message to sign
-      const message = `Welcome to SolChan!\n\nPlease sign this message to authenticate.\n\nNonce: ${nonce}`
+      const message = `Welcome to BlobChan!\n\nPlease sign this message to authenticate.\n\nNonce: ${nonce}`
       
       // Sign message
       const encodedMessage = new TextEncoder().encode(message)
