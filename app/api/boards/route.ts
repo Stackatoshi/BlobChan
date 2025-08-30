@@ -1,14 +1,48 @@
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { boards } from '@/lib/db/schema'
+
+const mockBoards = [
+  {
+    id: 'tech',
+    title: 'Technology',
+    description: 'Discuss the latest in technology, programming, and software development',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+  {
+    id: 'crypto',
+    title: 'Cryptocurrency',
+    description: 'Bitcoin, Ethereum, DeFi, and all things blockchain',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+  {
+    id: 'rnd',
+    title: 'Random',
+    description: 'Random discussions, memes, and general chat',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+  {
+    id: 'gaming',
+    title: 'Gaming',
+    description: 'Video games, esports, and gaming culture',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+  {
+    id: 'news',
+    title: 'News & Politics',
+    description: 'Current events, politics, and world news',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+]
 
 export async function GET() {
-  try {
-    const allBoards = await db.select().from(boards).orderBy(boards.id)
-    
-    return NextResponse.json(allBoards)
-  } catch (error) {
-    console.error('Boards fetch error:', error)
-    return NextResponse.json({ error: 'Failed to fetch boards' }, { status: 500 })
-  }
+  return NextResponse.json(mockBoards)
 }

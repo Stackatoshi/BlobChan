@@ -1,46 +1,57 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { threads, boards } from '@/lib/db/schema'
-import { eq, and, isNull, desc } from 'drizzle-orm'
+
+const mockThreads = [
+  {
+    id: 'thread1',
+    opUsername: 'Anonymous',
+    content: 'Welcome to SolChan! This is a 4chan-style imageboard built on Solana with USDC subscriptions.',
+    imageUrl: null,
+    linkUrl: null,
+    linkTitle: null,
+    linkImageUrl: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30 minutes ago
+    bumpedAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(), // 5 minutes ago
+  },
+  {
+    id: 'thread2',
+    opUsername: 'CryptoAnon',
+    content: 'What do you think about the current state of DeFi? Are we in a bear market or just a correction?',
+    imageUrl: null,
+    linkUrl: 'https://coinmarketcap.com',
+    linkTitle: 'CoinMarketCap: Cryptocurrency Prices, Charts And Market Capitalizations',
+    linkImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60).toISOString(), // 1 hour ago
+    bumpedAt: new Date(Date.now() - 1000 * 60 * 15).toISOString(), // 15 minutes ago
+  },
+  {
+    id: 'thread3',
+    opUsername: 'TechGuy',
+    content: 'Just deployed my first Solana dApp! The development experience is so much better than Ethereum. Gas fees are basically non-existent.',
+    imageUrl: null,
+    linkUrl: null,
+    linkTitle: null,
+    linkImageUrl: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 120).toISOString(), // 2 hours ago
+    bumpedAt: new Date(Date.now() - 1000 * 60 * 45).toISOString(), // 45 minutes ago
+  },
+]
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { boardId: string } }
 ) {
-  try {
-    const { searchParams } = new URL(req.url)
-    const page = parseInt(searchParams.get('page') || '1')
-    
-    // Get board config
-    const board = await db.select().from(boards).where(eq(boards.id, params.boardId))
-    if (board.length === 0) {
-      return NextResponse.json({ error: 'Board not found' }, { status: 404 })
-    }
-    
-    const { threadsPerPage } = board[0]
-    const offset = (page - 1) * (threadsPerPage || 15)
-    
-    // Get threads for this board (not deleted, ordered by bumped_at desc)
-    const boardThreads = await db.select()
-      .from(threads)
-      .where(
-        and(
-          eq(threads.boardId, params.boardId),
-          isNull(threads.deletedAt)
-        )
-      )
-      .orderBy(desc(threads.bumpedAt))
-      .limit(threadsPerPage || 15)
-      .offset(offset)
-    
-    return NextResponse.json({
-      threads: boardThreads,
-      page,
-      threadsPerPage: threadsPerPage || 15,
-      hasMore: boardThreads.length === (threadsPerPage || 15),
-    })
-  } catch (error) {
-    console.error('Threads fetch error:', error)
-    return NextResponse.json({ error: 'Failed to fetch threads' }, { status: 500 })
-  }
+  const { searchParams } = new URL(req.url)
+  const page = parseInt(searchParams.get('page') || '1')
+  
+  // Mock pagination
+  const threadsPerPage = 15
+  const offset = (page - 1) * threadsPerPage
+  const paginatedThreads = mockThreads.slice(offset, offset + threadsPerPage)
+  
+  return NextResponse.json({
+    threads: paginatedThreads,
+    page,
+    threadsPerPage,
+    hasMore: page === 1, // Only show "hasMore" on first page for demo
+  })
 }

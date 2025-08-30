@@ -4,8 +4,7 @@
 
 1. **Vercel Account**: Sign up at [vercel.com](https://vercel.com)
 2. **GitHub Repository**: Push your code to GitHub
-3. **Vercel Postgres**: Create a database in Vercel dashboard
-4. **Vercel Blob**: Create blob storage in Vercel dashboard
+3. **Vercel Blob**: Create blob storage in Vercel dashboard (after first deployment)
 
 ## Step-by-Step Deployment
 
@@ -21,10 +20,7 @@
 In your Vercel project dashboard, go to **Settings → Environment Variables** and add:
 
 ```bash
-# Database (from Vercel Postgres)
-DATABASE_URL="postgresql://..."
-
-# Vercel Blob Storage
+# Vercel Blob Storage (after setting up Vercel Blob)
 BLOB_READ_WRITE_TOKEN="vercel_blob_rw_..."
 
 # Solana Configuration
@@ -36,47 +32,26 @@ TREASURY_WALLET="your_treasury_wallet_address"
 JWT_SECRET="your_random_jwt_secret_here"
 ```
 
-### 3. Set Up Vercel Postgres
-
-1. In Vercel dashboard, go to **Storage → Postgres**
-2. Create a new database
-3. Copy the connection string to `DATABASE_URL`
-4. Note: The connection string will look like:
-   ```
-   postgresql://default:password@host:port/database
-   ```
-
-### 4. Set Up Vercel Blob
+### 3. Set Up Vercel Blob (After First Deployment)
 
 1. In Vercel dashboard, go to **Storage → Blob**
 2. Create a new blob store
 3. Copy the read/write token to `BLOB_READ_WRITE_TOKEN`
 
-### 5. Deploy and Set Up Database
+### 4. Deploy
 
 1. **First Deploy**: Push your code to trigger deployment
-2. **Database Migration**: After deployment, run in Vercel CLI:
-   ```bash
-   vercel env pull .env.local
-   npx drizzle-kit push
-   ```
-3. **Seed Database**: Run the seeding script:
-   ```bash
-   npx tsx lib/seed.ts
-   ```
+2. **Set up Blob**: After successful deployment, create Vercel Blob storage
+3. **Configure Environment Variables**: Add the blob token and other variables
 
-### 6. Alternative: Use Vercel Dashboard
+### 5. Alternative: Use Vercel Dashboard
 
 If you prefer using the Vercel dashboard:
 
 1. Go to your project dashboard
 2. Click on **Functions** tab
 3. Find the deployment logs
-4. Use the **Shell** feature to run commands:
-   ```bash
-   npm run db:push
-   npm run seed
-   ```
+4. Monitor for any errors
 
 ## Environment Variables Details
 
@@ -84,7 +59,6 @@ If you prefer using the Vercel dashboard:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `DATABASE_URL` | Vercel Postgres connection string | `postgresql://default:...@.../...` |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob storage token | `vercel_blob_rw_...` |
 | `SOLANA_RPC_URL` | Solana RPC endpoint | `https://api.mainnet-beta.solana.com` |
 | `USDC_MINT_ADDRESS` | USDC token mint address | `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` |
@@ -116,20 +90,13 @@ vercel env ls
 # Pull environment variables locally
 vercel env pull .env.local
 
-# Run database migration
-npx drizzle-kit push
-
-# Check database connection
-npx drizzle-kit studio
-
-# Seed database
-npm run seed
+# Check deployment status
+vercel ls
 ```
 
 ### Support
 
 - **Vercel Documentation**: [vercel.com/docs](https://vercel.com/docs)
-- **Vercel Postgres**: [vercel.com/docs/storage/vercel-postgres](https://vercel.com/docs/storage/vercel-postgres)
 - **Vercel Blob**: [vercel.com/docs/storage/vercel-blob](https://vercel.com/docs/storage/vercel-blob)
 
 ## Post-Deployment
@@ -137,9 +104,9 @@ npm run seed
 After successful deployment:
 
 1. **Test Authentication**: Connect a Solana wallet
-2. **Test Subscriptions**: Try the subscription flow
-3. **Test Posting**: Create a thread and reply
-4. **Test Images**: Upload an image
-5. **Monitor Logs**: Check Vercel function logs for any errors
+2. **Test UI**: Navigate through boards and threads
+3. **Set up Blob**: Create Vercel Blob storage
+4. **Configure Environment Variables**: Add blob token and other variables
+5. **Test Full Features**: Try posting, image uploads, etc.
 
 Your SolChan imageboard should now be live! 🚀
