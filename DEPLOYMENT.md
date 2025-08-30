@@ -38,6 +38,21 @@ JWT_SECRET="your_random_jwt_secret_here"
 2. Create a new blob store
 3. Copy the read/write token to `BLOB_READ_WRITE_TOKEN`
 
+#### Blob API Usage
+The app uses the Vercel Blob API for image uploads:
+```typescript
+import { put } from "@vercel/blob";
+
+const { url } = await put('filename.jpg', file, { access: 'public' });
+```
+
+**Features:**
+- ✅ Public access for image sharing
+- ✅ Automatic file naming with timestamps
+- ✅ 5MB file size limit
+- ✅ Image format validation
+- ✅ Secure upload with JWT authentication
+
 ### 4. Deploy
 
 1. **First Deploy**: Push your code to trigger deployment
@@ -109,4 +124,4 @@ After successful deployment:
 4. **Configure Environment Variables**: Add blob token and other variables
 5. **Test Full Features**: Try posting, image uploads, etc.
 
-Your SolChan imageboard should now be live! 🚀
+Your BlobChan imageboard should now be live! 🚀
