@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server'
 
 const mockBoards = [
   {
-    id: 'tech',
-    title: 'Technology',
-    description: 'Discuss the latest in technology, programming, and software development',
+    id: 'b',
+    title: 'Random',
+    description: 'Random discussions, memes, and general chat',
     bannerUrl: null,
     pageLimit: 10,
     threadsPerPage: 15,
@@ -13,14 +13,6 @@ const mockBoards = [
     id: 'crypto',
     title: 'Cryptocurrency',
     description: 'Bitcoin, Ethereum, DeFi, and all things blockchain',
-    bannerUrl: null,
-    pageLimit: 10,
-    threadsPerPage: 15,
-  },
-  {
-    id: 'rnd',
-    title: 'Random',
-    description: 'Random discussions, memes, and general chat',
     bannerUrl: null,
     pageLimit: 10,
     threadsPerPage: 15,
@@ -37,6 +29,14 @@ const mockBoards = [
     id: 'news',
     title: 'News & Politics',
     description: 'Current events, politics, and world news',
+    bannerUrl: null,
+    pageLimit: 10,
+    threadsPerPage: 15,
+  },
+  {
+    id: 'tech',
+    title: 'Technology',
+    description: 'Discuss the latest in technology, programming, and software development',
     bannerUrl: null,
     pageLimit: 10,
     threadsPerPage: 15,

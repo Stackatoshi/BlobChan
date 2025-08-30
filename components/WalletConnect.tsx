@@ -4,6 +4,7 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useWalletStore } from '@/lib/store'
 import { useEffect, useState } from 'react'
+import bs58 from 'bs58'
 
 export function WalletConnect() {
   const { publicKey, signMessage: walletSignMessage, connected } = useWallet()
@@ -48,7 +49,7 @@ export function WalletConnect() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           walletAddress: publicKey.toString(),
-          signature: Buffer.from(signature).toString('base64'),
+          signature: bs58.encode(signature),
           message,
         }),
       })
@@ -68,7 +69,12 @@ export function WalletConnect() {
           // } else {
           //   setSubscriptionStatus('inactive')
           // }
+        } else {
+          console.error('Failed to fetch user data:', userRes.status)
         }
+      } else {
+        const errorData = await authRes.json()
+        console.error('Authentication failed:', errorData)
       }
     } catch (error) {
       console.error('Authentication error:', error)
