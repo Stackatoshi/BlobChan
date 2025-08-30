@@ -1,6 +1,7 @@
 import { Connection, PublicKey, Transaction, SystemProgram } from '@solana/web3.js'
 import { getAssociatedTokenAddress, createTransferInstruction, TOKEN_PROGRAM_ID } from '@solana/spl-token'
 import bs58 from 'bs58'
+import { verify } from '@noble/ed25519'
 
 const connection = new Connection(process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com')
 const USDC_MINT = new PublicKey(process.env.USDC_MINT_ADDRESS || 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v')
@@ -15,7 +16,7 @@ export async function verifySignature(
     const sig = bs58.decode(signature)
     const msg = new TextEncoder().encode(message)
     
-    return await pubKey.verify(msg, sig)
+    return await verify(sig, msg, pubKey.toBytes())
   } catch {
     return false
   }
