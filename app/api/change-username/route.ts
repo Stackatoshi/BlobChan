@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getJWTFromRequest } from '@/lib/auth'
 
 const USERNAME_CHANGE_AMOUNT = 0.99
-const TREASURY_WALLET = process.env.TREASURY_WALLET || '11111111111111111111111111111112'
+const TREASURY_WALLET = process.env.TREASURY_WALLET || '7UhwWmw1r15fqLKcbYEDVFjqiz2G753MsyDksFAjfT3e'
 
 export async function POST(req: NextRequest) {
   try {

@@ -26,7 +26,7 @@ BLOB_READ_WRITE_TOKEN="vercel_blob_rw_..."
 # Solana Configuration
 SOLANA_RPC_URL="https://api.mainnet-beta.solana.com"
 USDC_MINT_ADDRESS="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-TREASURY_WALLET="your_treasury_wallet_address"
+TREASURY_WALLET="7UhwWmw1r15fqLKcbYEDVFjqiz2G753MsyDksFAjfT3e"
 
 # JWT Secret (generate a random string)
 JWT_SECRET="your_random_jwt_secret_here"
@@ -62,7 +62,7 @@ If you prefer using the Vercel dashboard:
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob storage token | `vercel_blob_rw_...` |
 | `SOLANA_RPC_URL` | Solana RPC endpoint | `https://api.mainnet-beta.solana.com` |
 | `USDC_MINT_ADDRESS` | USDC token mint address | `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` |
-| `TREASURY_WALLET` | Your wallet for receiving USDC | `11111111111111111111111111111112` |
+| `TREASURY_WALLET` | Server wallet for receiving USDC | `7UhwWmw1r15fqLKcbYEDVFjqiz2G753MsyDksFAjfT3e` |
 | `JWT_SECRET` | Secret for JWT signing | Random 32+ character string |
 
 ### Optional Variables

@@ -6,8 +6,9 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secr
 
 export interface JWTPayload {
   walletAddress: string
-  iat: number
-  exp: number
+  iat?: number
+  exp?: number
+  [key: string]: any
 }
 
 export async function createJWT(walletAddress: string): Promise<string> {
