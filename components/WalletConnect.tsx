@@ -4,7 +4,6 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useWalletStore } from '@/lib/store'
 import { useEffect, useState } from 'react'
-import { signMessage } from '@solana/wallet-adapter-base'
 
 export function WalletConnect() {
   const { publicKey, signMessage: walletSignMessage, connected } = useWallet()
