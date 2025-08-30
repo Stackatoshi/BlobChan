@@ -88,15 +88,16 @@ export function PostForm({ boardId, threadId, onSuccess, placeholder = "What's o
     }
   }
 
-  if (!user?.subscriptionExpiresAt || new Date(user.subscriptionExpiresAt).getTime() < new Date().getTime()) {
-    return (
-      <div className="bg-card border border-border rounded-lg p-4">
-        <p className="text-center text-muted-foreground">
-          Active subscription required to post
-        </p>
-      </div>
-    )
-  }
+  // Temporarily disabled subscription check for testing
+  // if (!user?.subscriptionExpiresAt || new Date(user.subscriptionExpiresAt).getTime() < new Date().getTime()) {
+  //   return (
+  //     <div className="bg-card border border-border rounded-lg p-4">
+  //       <p className="text-center text-muted-foreground">
+  //         Active subscription required to post
+  //       </p>
+  //     </div>
+  //   )
+  // }
 
   return (
     <form onSubmit={handleSubmit} className="bg-card border border-border rounded-lg p-4">

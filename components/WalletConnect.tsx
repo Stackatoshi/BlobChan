@@ -60,12 +60,14 @@ export function WalletConnect() {
           const userData = await userRes.json()
           setUser(userData)
           
-          // Check subscription status
-          if (userData.subscriptionExpiresAt && new Date(userData.subscriptionExpiresAt).getTime() > new Date().getTime()) {
-            setSubscriptionStatus('active')
-          } else {
-            setSubscriptionStatus('inactive')
-          }
+          // Temporarily set subscription as active for testing
+          setSubscriptionStatus('active')
+          // Check subscription status (disabled for testing)
+          // if (userData.subscriptionExpiresAt && new Date(userData.subscriptionExpiresAt).getTime() > new Date().getTime()) {
+          //   setSubscriptionStatus('active')
+          // } else {
+          //   setSubscriptionStatus('inactive')
+          // }
         }
       }
     } catch (error) {
@@ -109,23 +111,7 @@ export function WalletConnect() {
       
       {connected && (
         <div className="flex items-center gap-2">
-          {subscriptionStatus === 'loading' && (
-            <span className="text-sm text-muted-foreground">Loading...</span>
-          )}
-          
-          {subscriptionStatus === 'inactive' && (
-            <button
-              onClick={handleSubscribe}
-              disabled={isLoading}
-              className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded hover:bg-primary/90 disabled:opacity-50"
-            >
-              {isLoading ? 'Processing...' : 'Subscribe (0.99 USDC)'}
-            </button>
-          )}
-          
-          {subscriptionStatus === 'active' && (
-            <span className="text-sm text-green-500">✓ Active Subscription</span>
-          )}
+          <span className="text-sm text-green-500">✓ Ready to Post (Testing Mode)</span>
         </div>
       )}
     </div>

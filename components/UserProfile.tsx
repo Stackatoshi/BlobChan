@@ -9,10 +9,13 @@ export function UserProfile() {
 
   if (!user) return null
 
-  const isSubscriptionActive = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt).getTime() > new Date().getTime()
-  const subscriptionExpiry = user.subscriptionExpiresAt 
-    ? formatDistanceToNow(new Date(user.subscriptionExpiresAt), { addSuffix: true })
-    : null
+  // Temporarily set subscription as active for testing
+  const isSubscriptionActive = true
+  const subscriptionExpiry = null
+  // const isSubscriptionActive = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt).getTime() > new Date().getTime()
+  // const subscriptionExpiry = user.subscriptionExpiresAt 
+  //   ? formatDistanceToNow(new Date(user.subscriptionExpiresAt), { addSuffix: true })
+  //   : null
 
   return (
     <div className="bg-card border border-border rounded-lg p-4 space-y-4">
