@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifySignature } from '@/lib/solana'
 import { setJWTCookie } from '@/lib/auth'
-import { db } from '@/lib/db'
-import { users } from '@/lib/db/schema'
-import { eq } from 'drizzle-orm'
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,17 +16,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
     }
     
-    // Check if user exists, create if not
-    const existingUser = await db.select().from(users).where(eq(users.walletAddress, walletAddress))
-    
-    if (existingUser.length === 0) {
-      await db.insert(users).values({
-        walletAddress,
-        username: null,
-        subscriptionExpiresAt: null,
-        profilePicUrl: null,
-      })
-    }
+    // Mock user creation - in real app, this would create user in database
+    console.log('User authenticated:', walletAddress)
     
     // Set JWT cookie
     await setJWTCookie(walletAddress)
