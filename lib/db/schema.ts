@@ -13,8 +13,8 @@ export const boards = pgTable('boards', {
   title: text('title').notNull(),
   description: text('description'),
   bannerUrl: text('banner_url'),
-  pageLimit: integer('page_limit').default(10),
-  threadsPerPage: integer('threads_per_page').default(15),
+  pageLimit: integer('page_limit').default(10).notNull(),
+  threadsPerPage: integer('threads_per_page').default(15).notNull(),
 })
 
 export const threads = pgTable('threads', {

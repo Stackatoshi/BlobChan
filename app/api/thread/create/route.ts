@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     
     // Check subscription
     const user = await db.select().from(users).where(eq(users.walletAddress, jwt.walletAddress))
-    if (user.length === 0 || !user[0].subscriptionExpiresAt || user[0].subscriptionExpiresAt < new Date()) {
+    if (user.length === 0 || !user[0].subscriptionExpiresAt || new Date(user[0].subscriptionExpiresAt).getTime() < new Date().getTime()) {
       return NextResponse.json({ error: 'Active subscription required' }, { status: 403 })
     }
     
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       id: threadId,
       boardId,
       opWalletAddress: jwt.walletAddress,
-      opUsername: user[0].username,
+      opUsername: user[0].username || null,
       content,
       imageUrl: imageUrl || null,
       linkUrl: linkUrl || null,

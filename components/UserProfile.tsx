@@ -9,7 +9,7 @@ export function UserProfile() {
 
   if (!user) return null
 
-  const isSubscriptionActive = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt) > new Date()
+  const isSubscriptionActive = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt).getTime() > new Date().getTime()
   const subscriptionExpiry = user.subscriptionExpiresAt 
     ? formatDistanceToNow(new Date(user.subscriptionExpiresAt), { addSuffix: true })
     : null

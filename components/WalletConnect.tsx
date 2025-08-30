@@ -62,7 +62,7 @@ export function WalletConnect() {
           setUser(userData)
           
           // Check subscription status
-          if (userData.subscriptionExpiresAt && new Date(userData.subscriptionExpiresAt) > new Date()) {
+          if (userData.subscriptionExpiresAt && new Date(userData.subscriptionExpiresAt).getTime() > new Date().getTime()) {
             setSubscriptionStatus('active')
           } else {
             setSubscriptionStatus('inactive')

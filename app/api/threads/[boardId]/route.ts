@@ -18,7 +18,7 @@ export async function GET(
     }
     
     const { threadsPerPage } = board[0]
-    const offset = (page - 1) * threadsPerPage
+    const offset = (page - 1) * (threadsPerPage || 15)
     
     // Get threads for this board (not deleted, ordered by bumped_at desc)
     const boardThreads = await db.select()
@@ -30,14 +30,14 @@ export async function GET(
         )
       )
       .orderBy(desc(threads.bumpedAt))
-      .limit(threadsPerPage)
+      .limit(threadsPerPage || 15)
       .offset(offset)
     
     return NextResponse.json({
       threads: boardThreads,
       page,
-      threadsPerPage,
-      hasMore: boardThreads.length === threadsPerPage,
+      threadsPerPage: threadsPerPage || 15,
+      hasMore: boardThreads.length === (threadsPerPage || 15),
     })
   } catch (error) {
     console.error('Threads fetch error:', error)
