@@ -12,7 +12,6 @@
     "seed": "node scripts/seed.js"
   },
   "dependencies": {
-    "@blob-upload/react": "^0.1.0",
     "@solana/spl-token": "^0.3.9",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-react": "^0.15.35",

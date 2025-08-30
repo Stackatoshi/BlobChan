@@ -36,7 +36,8 @@ export function PostForm({ boardId, threadId, onSuccess, placeholder = "What's o
         setImageUrl(data.url)
         setUploadProgress(100)
       } else {
-        throw new Error('Upload failed')
+        const errorData = await res.json()
+        throw new Error(errorData.error || 'Upload failed')
       }
     } catch (error) {
       console.error('Upload error:', error)
