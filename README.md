@@ -1,4 +1,4 @@
-# SolChan - 4chan-style Imageboard on Solana
+# BlobChan - 4chan-style Imageboard on Solana
 
 A decentralized 4chan-style imageboard built with Next.js 14, Vercel Postgres, and Solana blockchain integration. Users can create threads and replies with text and images, with USDC-based subscriptions and wallet authentication.
 
@@ -39,7 +39,7 @@ A decentralized 4chan-style imageboard built with Next.js 14, Vercel Postgres, a
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd SolChan
+   cd BlobChan
    ```
 
 2. **Install dependencies**
@@ -218,4 +218,4 @@ For issues and questions:
 
 ---
 
-Built with ❤️ on Solana
+Built with ❤️ on Solana & Vercel Blob
